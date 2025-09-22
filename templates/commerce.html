@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Commerce Course{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <!-- Hero Section -->
+    <div class="text-center mb-5">
+        <h1 class="text-primary">Commerce Course</h1>
+        <p class="lead">Learn the fundamentals of business, finance, and economics!</p>
+    </div>
+
+    <!-- Modules Section -->
+    <section id="modules" class="mt-5">
+        <h2 class="text-success mb-3">📘 Course Modules</h2>
+        <ul class="list-group">
+            <li class="list-group-item">Accounting Basics (Financial Statements, Ledger, Journal)</li>
+            <li class="list-group-item">Business Studies (Management, Marketing, Entrepreneurship)</li>
+            <li class="list-group-item">Economics (Microeconomics, Macroeconomics, Demand & Supply)</li>
+            <li class="list-group-item">Finance & Banking (Investment, Banking, Stock Market)</li>
+            <li class="list-group-item">Business Law (Contracts, Regulations)</li>
+            <li class="list-group-item">Taxation (Income Tax, GST)</li>
+            <li class="list-group-item">International Trade & Commerce</li>
+        </ul>
+    </section>
+
+    <!-- History of Commerce -->
+    <section id="history" class="mt-5">
+        <h2 class="text-danger mb-3">📖 History of Commerce</h2>
+        <p>
+            Commerce has existed since ancient civilizations, where trade of goods and services began. 
+            With time, markets, banking systems, and financial institutions developed. 
+            Modern commerce encompasses global trade, stock markets, e-commerce, and financial management.
+        </p>
+    </section>
+
+    <!-- Famous Economists & Business Leaders -->
+    <section id="leaders" class="mt-5">
+        <h2 class="text-info mb-3">👨‍🏫 Famous Economists & Business Leaders</h2>
+        <ul>
+            <li><b>Adam Smith</b> – Father of Economics</li>
+            <li><b>John Maynard Keynes</b> – Macroeconomics Pioneer</li>
+            <li><b>Warren Buffett</b> – Investment Guru</li>
+            <li><b>Indra Nooyi</b> – Former CEO of PepsiCo</li>
+        </ul>
+    </section>
+
+    <!-- Applications of Commerce -->
+    <section id="applications" class="mt-5 mb-5">
+        <h2 class="text-warning mb-3">💼 Applications of Commerce</h2>
+        <ul>
+            <li>Business Management & Entrepreneurship</li>
+            <li>Financial Planning & Investment</li>
+            <li>Banking & Insurance</li>
+            <li>Marketing & Advertising</li>
+            <li>International Trade & E-Commerce</li>
+        </ul>
+    </section>
+
+    <div class="text-center mt-5">
+        <a href="/" class="btn btn-dark">⬅ Back to Home</a>
+    </div>
+</div>
+{% endblock %}

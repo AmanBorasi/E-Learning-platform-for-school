@@ -1,0 +1,9 @@
+<h2>Customer Reviews</h2>
+{% for review in reviews %}
+    <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+        <strong>{{ review.name }}</strong> <small>{{ review.created_at|date:"M d, Y" }}</small>
+        <p>{{ review.message }}</p>
+    </div>
+{% empty %}
+    <p>No reviews yet.</p>
+{% endfor %}

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}View Students - E-Learning Platform{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="fw-bold mb-4 text-center">View Student Details</h2>
+
+    <!-- Search & Filter -->
+    <div class="row mb-4 g-3">
+        <div class="col-md-4">
+            <input type="text" id="searchName" class="form-control" placeholder="Search by Name">
+        </div>
+        <div class="col-md-4">
+            <input type="text" id="searchClass" class="form-control" placeholder="Search by Class">
+        </div>
+        <div class="col-md-4">
+            <select id="searchGender" class="form-select">
+                <option value="">All Genders</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="table-responsive shadow-sm rounded-3 bg-white p-3">
+        <table class="table table-hover align-middle mb-0" id="studentsTable">
+            <thead class="table-primary">
+                <tr>
+                    <th>#</th>
+                    <th>Student Name</th>
+                    <th>Father's Name</th>
+                    <th>Mother's Name</th>
+                    <th>Address</th>
+                    <th>School</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Class</th>
+                    <th>Registered On</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stud in studs %}
+                <tr>
+                    <th scope="row">{{ stud.id }}</th>
+                    <td><a href="{% url 'update_student' stud.id %}" class="text-decoration-none">{{ stud.s_name }}</a></td>
+                    <td>{{ stud.s_fathername }}</td>
+                    <td>{{ stud.s_mothername }}</td>
+                    <td>{{ stud.s_addr }}</td>
+                    <td>{{ stud.s_school }}</td>
+                    <td>{{ stud.s_contactnumber }}</td>
+                    <td>{{ stud.s_email }}</td>
+                    <td>{{ stud.s_gender }}</td>
+                    <td>{{ stud.s_class }}</td>
+                    <td>{{ stud.created_at|date:"d M Y" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="11" class="text-center text-muted">No students found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+const searchName = document.getElementById('searchName');
+const searchClass = document.getElementById('searchClass');
+const searchGender = document.getElementById('searchGender');
+const table = document.getElementById('studentsTable').getElementsByTagName('tbody')[0];
+
+function filterTable() {
+    const nameVal = searchName.value.toLowerCase();
+    const classVal = searchClass.value.toLowerCase();
+    const genderVal = searchGender.value.toLowerCase();
+
+    for (let row of table.rows) {
+        let name = row.cells[1].textContent.toLowerCase();
+        let classCell = row.cells[9].textContent.toLowerCase();
+        let gender = row.cells[8].textContent.toLowerCase();
+
+        if ((name.includes(nameVal) || !nameVal) &&
+            (classCell.includes(classVal) || !classVal) &&
+            (gender.includes(genderVal) || !genderVal)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    }
+}
+
+searchName.addEventListener('input', filterTable);
+searchClass.addEventListener('input', filterTable);
+searchGender.addEventListener('change', filterTable);
+</script>
+
+<style>
+.table-responsive {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+.table-hover tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+}
+</style>
+{% endblock %}

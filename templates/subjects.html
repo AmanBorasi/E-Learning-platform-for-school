@@ -1,0 +1,17 @@
+<div class="container">
+  {% for stream in streams %}
+    <h2>{{ stream.name }}</h2>
+    <div class="subjects">
+      {% for subject in stream.subjects.all %}
+        <h4>{{ subject.name }}</h4>
+        <ul>
+          {% for course in subject.courses.all %}
+            <li>
+              {{ course.name }} - ₹{{ course.fee }} ({{ course.duration }})
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>

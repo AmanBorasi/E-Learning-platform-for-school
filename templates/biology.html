@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Biology Course{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <!-- Hero Section -->
+    <div class="text-center mb-5">
+        <h1 class="text-primary">Biology Course</h1>
+        <p class="lead">Explore the world of living organisms, ecosystems, and life sciences!</p>
+    </div>
+
+    <!-- Modules Section -->
+    <section id="modules" class="mt-5">
+        <h2 class="text-success mb-3">📘 Course Modules</h2>
+        <ul class="list-group">
+            <li class="list-group-item">Cell Biology (Structure, Functions, Organelles)</li>
+            <li class="list-group-item">Genetics (DNA, Genes, Heredity)</li>
+            <li class="list-group-item">Evolution (Darwin, Natural Selection)</li>
+            <li class="list-group-item">Human Anatomy & Physiology</li>
+            <li class="list-group-item">Botany (Plants, Photosynthesis)</li>
+            <li class="list-group-item">Zoology (Animals, Behavior, Ecology)</li>
+            <li class="list-group-item">Microbiology (Bacteria, Viruses, Fungi)</li>
+        </ul>
+    </section>
+
+    <!-- History of Biology -->
+    <section id="history" class="mt-5">
+        <h2 class="text-danger mb-3">📖 History of Biology</h2>
+        <p>
+            Biology is the study of life and living organisms. Early contributions came from Aristotle and 
+            Theophrastus, who classified plants and animals. In the 17th century, the invention of the microscope 
+            opened new doors to study cells. Modern biology has expanded into genetics, molecular biology, 
+            ecology, and biotechnology.
+        </p>
+    </section>
+
+    <!-- Famous Biologists -->
+    <section id="biologists" class="mt-5">
+        <h2 class="text-info mb-3">👨‍🏫 Famous Biologists</h2>
+        <ul>
+            <li><b>Charles Darwin</b> – Theory of Evolution</li>
+            <li><b>Gregor Mendel</b> – Father of Genetics</li>
+            <li><b>Louis Pasteur</b> – Microbiology Pioneer</li>
+            <li><b>Jane Goodall</b> – Primatology and Conservation</li>
+        </ul>
+    </section>
+
+    <!-- Applications of Biology -->
+    <section id="applications" class="mt-5 mb-5">
+        <h2 class="text-warning mb-3">🔬 Applications of Biology</h2>
+        <ul>
+            <li>Medicine & Healthcare (Vaccines, Drugs, Surgery)</li>
+            <li>Agriculture (Crop Improvement, Pest Control)</li>
+            <li>Environmental Conservation (Ecosystems, Biodiversity)</li>
+            <li>Biotechnology (Genetic Engineering, Biofuels)</li>
+            <li>Education & Research (Laboratory Studies, Fieldwork)</li>
+        </ul>
+    </section>
+
+    <div class="text-center mt-5">
+        <a href="/" class="btn btn-dark">⬅ Back to Home</a>
+    </div>
+</div>
+{% endblock %}

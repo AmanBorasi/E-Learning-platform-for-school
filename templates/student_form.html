@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Update Student - E-Learning Platform{% endblock %}
+
+{% block content %}
+<div class="container py-5" style="max-width: 650px;">
+    <h2 class="fw-bold mb-3 text-center">Update Student Details</h2>
+    <p class="text-center text-muted mb-4">Update the student information step by step.</p>
+
+    <!-- Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form id="updateForm" method="post" class="bg-white p-4 rounded-3 shadow-sm">
+        {% csrf_token %}
+
+        <!-- Step 1: Student Info -->
+        <div class="tab">
+            <h5 class="fw-semibold mb-3">Student Information</h5>
+            <div class="mb-3">
+                {{ form.s_name.label_tag }} 
+                {{ form.s_name|add_class:"form-control" }}
+                {% if form.s_name.errors %}<div class="text-danger small">{{ form.s_name.errors }}</div>{% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.s_gender.label_tag }} 
+                {{ form.s_gender|add_class:"form-select" }}
+                {% if form.s_gender.errors %}<div class="text-danger small">{{ form.s_gender.errors }}</div>{% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.s_class.label_tag }} 
+                {{ form.s_class|add_class:"form-control" }}
+                {% if form.s_class.errors %}<div class="text-danger small">{{ form.s_class.errors }}</div>{% endif %}
+            </div>
+        </div>
+
+        <!-- Step 2: Parent Info -->
+        <div class="tab">
+            <h5 class="fw-semibold mb-3">Parent Information</h5>
+            <div class="mb-3">
+                {{ form.s_fathername.label_tag }}
+                {{ form.s_fathername|add_class:"form-control" }}
+                {% if form.s_fathername.errors %}<div class="text-danger small">{{ form.s_fathername.errors }}</div>{% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.s_mothername.label_tag }}
+                {{ form.s_mothername|add_class:"form-control" }}
+                {% if form.s_mothername.errors %}<div class="text-danger small">{{ form.s_mothername.errors }}</div>{% endif %}
+            </div>
+        </div>
+
+        <!-- Step 3: Contact Info -->
+        <div class="tab">
+            <h5 class="fw-semibold mb-3">Contact Information</h5>
+            <div class="mb-3">
+                {{ form.s_email.label_tag }}
+                {{ form.s_email|add_class:"form-control" }}
+                {% if form.s_email.errors %}<div class="text-danger small">{{ form.s_email.errors }}</div>{% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.s_contactnumber.label_tag }}
+                {{ form.s_contactnumber|add_class:"form-control" }}
+                {% if form.s_contactnumber.errors %}<div class="text-danger small">{{ form.s_contactnumber.errors }}</div>{% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.s_addr.label_tag }}
+                {{ form.s_addr|add_class:"form-control" }}
+                {% if form.s_addr.errors %}<div class="text-danger small">{{ form.s_addr.errors }}</div>{% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.s_school.label_tag }}
+                {{ form.s_school|add_class:"form-control" }}
+                {% if form.s_school.errors %}<div class="text-danger small">{{ form.s_school.errors }}</div>{% endif %}
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="d-flex justify-content-between mt-4">
+            <button type="button" class="btn btn-secondary btn-lg rounded-pill" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+            <button type="button" class="btn btn-primary btn-lg rounded-pill" id="nextBtn" onclick="nextPrev(1)">Next</button>
+        </div>
+
+        <!-- Progress Indicators -->
+        <div class="mt-4 text-center">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
+    </form>
+</div>
+
+<script>
+let currentTab = 0;
+showTab(currentTab);
+
+function showTab(n) {
+    let tabs = document.getElementsByClassName("tab");
+    tabs[n].style.display = "block";
+    document.getElementById("prevBtn").style.display = n == 0 ? "none" : "inline";
+    document.getElementById("nextBtn").innerHTML = n == (tabs.length - 1) ? "Save" : "Next";
+    fixStepIndicator(n);
+}
+
+function nextPrev(n) {
+    let tabs = document.getElementsByClassName("tab");
+    if (n == 1 && !validateForm()) return false;
+    tabs[currentTab].style.display = "none";
+    currentTab += n;
+    if (currentTab >= tabs.length) {
+        document.getElementById("updateForm").submit();
+        return false;
+    }
+    showTab(currentTab);
+}
+
+function validateForm() {
+    let valid = true;
+    let inputs = document.getElementsByClassName("tab")[currentTab].getElementsByTagName("input");
+    for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].value == "") {
+            inputs[i].classList.add("is-invalid");
+            valid = false;
+        } else {
+            inputs[i].classList.remove("is-invalid");
+        }
+    }
+    return valid;
+}
+
+function fixStepIndicator(n) {
+    let steps = document.getElementsByClassName("step");
+    for (let i = 0; i < steps.length; i++) steps[i].className = steps[i].className.replace(" active", "");
+    steps[n].className += " active";
+}
+</script>
+
+<style>
+.tab { display: none; }
+.step {
+  height: 12px;
+  width: 12px;
+  margin: 0 3px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s;
+}
+.step.active { background-color: #0d6efd; }
+input.is-invalid { border-color: #dc3545; }
+</style>
+{% endblock %}

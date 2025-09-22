@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Mathematics Course{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <!-- Hero Section -->
+    <div class="text-center mb-5">
+        <h1 class="text-primary">Mathematics Course</h1>
+        <p class="lead">Explore the world of numbers, formulas, and logic — from basics to advanced concepts!</p>
+    </div>
+
+    <!-- Modules Section -->
+    <section id="modules" class="mt-5">
+        <h2 class="text-success mb-3">📘 Course Modules</h2>
+        <ul class="list-group">
+            <li class="list-group-item">Algebra Basics (Equations, Polynomials, Functions)</li>
+            <li class="list-group-item">Calculus (Limits, Derivatives, Integrals)</li>
+            <li class="list-group-item">Geometry (Shapes, Theorems, Coordinate Geometry)</li>
+            <li class="list-group-item">Probability & Statistics</li>
+            <li class="list-group-item">Trigonometry</li>
+            <li class="list-group-item">Linear Algebra & Matrices</li>
+            <li class="list-group-item">Number Theory</li>
+        </ul>
+    </section>
+
+    <!-- History of Mathematics -->
+    <section id="history" class="mt-5">
+        <h2 class="text-danger mb-3">📖 History of Mathematics</h2>
+        <p>
+            Mathematics has been studied for thousands of years. Ancient civilizations like the Egyptians 
+            and Babylonians developed early techniques for counting, measuring, and solving equations. 
+            Greek mathematicians such as Euclid and Pythagoras laid the foundations of geometry and number theory. 
+            In modern times, mathematics continues to evolve with applications in technology, AI, and physics.
+        </p>
+    </section>
+
+    <!-- Famous Mathematicians -->
+    <section id="mathematicians" class="mt-5">
+        <h2 class="text-info mb-3">👨‍🏫 Famous Mathematicians</h2>
+        <ul>
+            <li><b>Euclid</b> – Father of Geometry</li>
+            <li><b>Isaac Newton</b> – Invented Calculus</li>
+            <li><b>Srinivasa Ramanujan</b> – Great Indian Mathematician</li>
+            <li><b>Carl Gauss</b> – Prince of Mathematicians</li>
+        </ul>
+    </section>
+
+    <!-- Applications of Mathematics -->
+    <section id="applications" class="mt-5 mb-5">
+        <h2 class="text-warning mb-3">🔬 Applications of Mathematics</h2>
+        <ul>
+            <li>Computer Science (Algorithms, Data Structures, Machine Learning)</li>
+            <li>Engineering (Structural Analysis, Robotics)</li>
+            <li>Economics & Finance (Statistics, Probability, Predictions)</li>
+            <li>Space & Physics (Astronomy, Quantum Mechanics)</li>
+            <li>Everyday Life (Shopping, Budgeting, Time Management)</li>
+        </ul>
+    </section>
+
+    <div class="text-center mt-5">
+        <a href="/" class="btn btn-dark">⬅ Back to Home</a>
+    </div>
+</div>
+{% endblock %}

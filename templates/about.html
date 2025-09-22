@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    /* Container styling */
+    .about-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 30px 25px;
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        line-height: 1.7;
+        transition: transform 0.3s;
+    }
+
+    .about-container:hover {
+        transform: translateY(-5px);
+    }
+
+    .about-container h1 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 25px;
+        font-size: 2.5em;
+        font-weight: bold;
+    }
+
+    .about-container p {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    }
+
+    .about-container ul {
+        list-style: disc inside;
+        margin-bottom: 20px;
+        padding-left: 0;
+    }
+
+    .about-container ul li {
+        margin-bottom: 10px;
+    }
+
+    /* Customer Reviews Section */
+    .reviews {
+        max-width: 900px;
+        margin: 50px auto 30px auto;
+        text-align: center;
+    }
+
+    .reviews h2 {
+        font-size: 2em;
+        color: #2c3e50;
+        margin-bottom: 30px;
+    }
+
+    .review-card {
+        background-color: #f9f9f9;
+        border-radius: 12px;
+        padding: 20px 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: transform 0.3s;
+        text-align: left;
+    }
+
+    .review-card:hover {
+        transform: translateY(-3px);
+    }
+
+    .review-card p {
+        font-size: 1em;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    .review-card .reviewer {
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    .star-rating {
+        color: #f39c12;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    /* Review Form */
+    .review-form {
+        background-color: #f2f2f2;
+        padding: 20px 25px;
+        border-radius: 12px;
+        max-width: 900px;
+        margin: 30px auto;
+        text-align: left;
+    }
+
+    .review-form h3 {
+        margin-bottom: 15px;
+        color: #2c3e50;
+    }
+
+    .review-form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .review-form input[type="text"],
+    .review-form textarea,
+    .review-form select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    .review-form button {
+        background-color: #1abc9c;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .review-form button:hover {
+        background-color: #16a085;
+    }
+
+    /* Call-to-action button */
+    .cta-btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: #1abc9c;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 20px;
+        transition: background 0.3s;
+    }
+
+    .cta-btn:hover {
+        background-color: #16a085;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .about-container, .reviews, .review-form {
+            margin: 30px 20px;
+            padding: 20px;
+        }
+    }
+</style>
+
+<!-- About Section -->
+<div class="about-container">
+    <h1>About E-Learning With Aman</h1>
+    <p>Welcome to <strong>E-Learning With Aman</strong>, your number one source for high-quality online learning. Our mission is to make learning accessible, easy, and engaging for everyone.</p>
+    
+    <p>We focus on providing:</p>
+    <ul>
+        <li>Interactive lessons and tutorials</li>
+        <li>User-friendly dashboards for easy navigation</li>
+        <li>Personalized learning paths to improve your skills</li>
+    </ul>
+
+    <p>Founded in 2025, our platform is designed to help learners gain knowledge efficiently and effectively. We are committed to quality education and continuous improvement.</p>
+
+    <p>Join our community of learners and start your journey to success today!</p>
+
+    <div style="text-align:center;">
+        <a href="/courses/" class="cta-btn">Explore Courses</a>
+    </div>
+</div>
+
+<!-- Reviews Display Section -->
+<div class="reviews">
+    <h2>What Our Students Say</h2>
+
+    <div class="review-card">
+        <div class="star-rating">★★★★★</div>
+        <p>"Aman's courses are so clear and easy to follow. I learned so much in just a few weeks!"</p>
+        <div class="reviewer">- Riya Sharma</div>
+    </div>
+
+    <div class="review-card">
+        <div class="star-rating">★★★★☆</div>
+        <p>"The interactive lessons and personalized guidance really helped me improve my skills. Highly recommend!"</p>
+        <div class="reviewer">- Arjun Verma</div>
+    </div>
+
+    <div class="review-card">
+        <div class="star-rating">★★★★★</div>
+        <p>"E-Learning With Aman is the best online learning platform I've ever used. The content is top-notch."</p>
+        <div class="reviewer">- Sneha Gupta</div>
+    </div>
+</div>
+
+<!-- Submit Your Review -->
+<div class="review-form">
+    <h3>Submit Your Review</h3>
+    <form method="POST" action="/submit-review/">
+        {% csrf_token %}
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="rating">Rating</label>
+        <select id="rating" name="rating" required>
+            <option value="">Select rating</option>
+            <option value="5">★★★★★ - Excellent</option>
+            <option value="4">★★★★☆ - Very Good</option>
+            <option value="3">★★★☆☆ - Good</option>
+            <option value="2">★★☆☆☆ - Fair</option>
+            <option value="1">★☆☆☆☆ - Poor</option>
+        </select>
+
+        <label for="comment">Comment</label>
+        <textarea id="comment" name="comment" rows="4" placeholder="Write your review here..." required></textarea>
+
+        <button type="submit">Submit Review</button>
+    </form>
+</div>
+
+{% endblock %}

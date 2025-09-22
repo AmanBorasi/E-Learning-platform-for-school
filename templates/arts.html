@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Arts Course{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <!-- Hero Section -->
+    <div class="text-center mb-5">
+        <h1 class="text-primary">Arts Course</h1>
+        <p class="lead">Discover the world of creativity, literature, history, and culture!</p>
+    </div>
+
+    <!-- Modules Section -->
+    <section id="modules" class="mt-5">
+        <h2 class="text-success mb-3">📘 Course Modules</h2>
+        <ul class="list-group">
+            <li class="list-group-item">Literature (Poetry, Prose, Drama)</li>
+            <li class="list-group-item">History (Ancient, Medieval, Modern)</li>
+            <li class="list-group-item">Philosophy & Ethics</li>
+            <li class="list-group-item">Psychology & Sociology</li>
+            <li class="list-group-item">Political Science</li>
+            <li class="list-group-item">Fine Arts (Painting, Sculpture, Music)</li>
+            <li class="list-group-item">Cultural Studies & Anthropology</li>
+        </ul>
+    </section>
+
+    <!-- History of Arts -->
+    <section id="history" class="mt-5">
+        <h2 class="text-danger mb-3">📖 History of Arts</h2>
+        <p>
+            Arts have been an integral part of human civilization. From prehistoric cave paintings 
+            to Renaissance masterpieces, arts reflect cultural, social, and philosophical developments. 
+            Literature, music, theatre, and visual arts have evolved alongside society, expressing human creativity.
+        </p>
+    </section>
+
+    <!-- Famous Artists & Thinkers -->
+    <section id="artists" class="mt-5">
+        <h2 class="text-info mb-3">🎨 Famous Artists & Thinkers</h2>
+        <ul>
+            <li><b>Leonardo da Vinci</b> – Painter, Inventor, Polymath</li>
+            <li><b>William Shakespeare</b> – Playwright & Poet</li>
+            <li><b>Rabindranath Tagore</b> – Poet, Philosopher, Artist</li>
+            <li><b>Michelangelo</b> – Sculptor, Painter, Architect</li>
+        </ul>
+    </section>
+
+    <!-- Applications of Arts -->
+    <section id="applications" class="mt-5 mb-5">
+        <h2 class="text-warning mb-3">🎭 Applications of Arts</h2>
+        <ul>
+            <li>Creative Writing & Literature</li>
+            <li>Performing Arts (Theatre, Dance, Music)</li>
+            <li>Visual Arts (Painting, Sculpture, Photography)</li>
+            <li>Film, Media & Communication</li>
+            <li>Cultural Heritage & Museum Studies</li>
+        </ul>
+    </section>
+
+    <div class="text-center mt-5">
+        <a href="/" class="btn btn-dark">⬅ Back to Home</a>
+    </div>
+</div>
+{% endblock %}

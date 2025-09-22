@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}E-Learning Platform{% endblock %}</title>
+
+    <!-- Bootstrap & Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar-nav .nav-link {
+        transition: color 0.3s, transform 0.3s;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        }
+        .navbar-nav .nav-link:hover {
+        color: #0d6efd;
+        transform: scale(1.05);
+        }
+
+        .transition-navbar {
+        transition: all 0.3s ease;
+        }
+        .transition-navbar.scrolled {
+        padding-top: 0.4rem !important;
+        padding-bottom: 0.4rem !important;
+        box-shadow: 0 4px 15px rgba(233, 224, 224, 0.15);
+        }
+        
+        footer {
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #adb5bd;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: white;
+        }
+        .social-icons a {
+            font-size: 1.2rem;
+            margin-right: 10px;
+            color: #adb5bd;
+        }
+        .social-icons a:hover {
+            color: #eaedf1ff;
+        }
+    </style>
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-primary" href="/">
+      <i class="fa-solid fa-graduation-cap me-1"></i> E-Learning with Aman
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <!-- Home -->
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+
+        <!-- About Us -->
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About Us</a>
+        </li>
+
+        <!-- Courses Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Courses
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
+            <li><a class="dropdown-item" href="/courses/mathematics">Mathematics</a></li>
+            <li><a class="dropdown-item" href="/courses/biology">Biology</a></li>
+            <li><a class="dropdown-item" href="/courses/commerce">Commerce</a></li>
+            <li><a class="dropdown-item" href="/courses/arts">Arts</a></li>
+          </ul>
+        </li>
+
+<!-- Registrations Dropdown -->
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button"data-bs-toggle="dropdown" aria-expanded="false">Login</a>
+      <ul class="dropdown-menu" aria-labelledby="loginDropdown">
+        <li><a class="dropdown-item" href="/student_login">Student Login</a></li>
+        <li><a class="dropdown-item" href="/teacher_login">Teacher Login</a></li>
+        <li><a class="dropdown-item" href="/admin">Admin Login</a></li>
+      </ul>
+  </li>
+
+
+        <!-- Contact Us -->
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Hero Section (optional) -->
+{% block hero %}{% endblock %}
+
+<!-- Main Content -->
+<main class="container my-4">
+    {% block content %}{% endblock %}
+</main>
+
+<!-- Footer -->
+<footer class="bg-dark text-light pt-5 pb-3 mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- About -->
+            <div class="col-md-4 mb-3">
+                <h5 class="fw-bold">E-Learning With Aman</h5>
+                <p class="text-muted">Learn new skills anytime, anywhere. High-quality courses for all learners.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-4 mb-3">
+                <h6 class="fw-bold">Quick Links</h6>
+                <ul class="list-unstyled">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="/student_login">Registrations</a></li>
+                    <li><a href="/teacher_login">Teacher Registrations</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-md-4 mb-3">
+                <h6 class="fw-bold">Contact Us</h6>
+                <p><i class="fas fa-map-marker-alt me-2"></i> Indore, (M.P.) India</p>
+                <p><i class="fas fa-envelope me-2"></i> amanborasi00@gmail.com</p>
+                <p><i class="fas fa-phone me-2"></i> +91 9685336848</p>
+            </div>
+        </div>
+
+        <hr class="border-secondary">
+        <div class="text-center">
+            <small>&copy; {{ now|date:"Y" }} E-learning With Aman | Designed with ❤️ for learners</small>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

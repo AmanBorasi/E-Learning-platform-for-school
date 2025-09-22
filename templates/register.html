@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Register - E-Learning Platform{% endblock %}
+
+{% block content %}
+<div class="container py-5" style="max-width: 650px;">
+    <h2 class="fw-bold mb-3 text-center">Student Registration</h2>
+    <p class="text-center text-muted mb-4">Fill in the details step by step.</p>
+
+    <!-- Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form id="regForm" method="POST" class="bg-white p-4 rounded-3 shadow-sm">
+        {% csrf_token %}
+        
+        <!-- Step 1: Student Info -->
+        <div class="tab">
+            <h5 class="fw-semibold mb-3">Student Information</h5>
+            <div class="mb-3">
+                <label for="s_name" class="form-label">Student Name</label>
+                <input type="text" class="form-control" name="s_name" id="s_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="s_gender" class="form-label">Gender</label>
+                <select class="form-select" name="s_gender" id="s_gender" required>
+                    <option value="">Choose Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="s_class" class="form-label">Student Class</label>
+                <input type="text" class="form-control" name="s_class" id="s_class" required>
+            </div>
+        </div>
+
+        <!-- Step 2: Parent Info -->
+        <div class="tab">
+            <h5 class="fw-semibold mb-3">Parent Information</h5>
+            <div class="mb-3">
+                <label for="s_fathername" class="form-label">Father's Name</label>
+                <input type="text" class="form-control" name="s_fathername" id="s_fathername" required>
+            </div>
+            <div class="mb-3">
+                <label for="s_mothername" class="form-label">Mother's Name</label>
+                <input type="text" class="form-control" name="s_mothername" id="s_mothername" required>
+            </div>
+        </div>
+
+        <!-- Step 3: Contact Info -->
+        <div class="tab">
+            <h5 class="fw-semibold mb-3">Contact Information</h5>
+            <div class="mb-3">
+                <label for="s_email" class="form-label">Email</label>
+                <input type="email" class="form-control" name="s_email" id="s_email" required>
+            </div>
+            <div class="mb-3">
+                <label for="s_contactnumber" class="form-label">Contact Number</label>
+                <input type="text" class="form-control" name="s_contactnumber" id="s_contactnumber" required>
+            </div>
+            <div class="mb-3">
+                <label for="s_addr" class="form-label">Communication Address</label>
+                <input type="text" class="form-control" name="s_addr" id="s_addr" required>
+            </div>
+            <div class="mb-3">
+                <label for="s_school" class="form-label">School Name</label>
+                <input type="text" class="form-control" name="s_school" id="s_school" required>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="d-flex justify-content-between mt-4">
+            <button type="button" class="btn btn-secondary btn-lg rounded-pill" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+            <button type="button" class="btn btn-primary btn-lg rounded-pill" id="nextBtn" onclick="nextPrev(1)">Next</button>
+        </div>
+
+        <!-- Progress Indicators -->
+        <div class="mt-4 text-center">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
+    </form>
+</div>
+
+<!-- JS for Multi-Step Form -->
+<script>
+let currentTab = 0;
+showTab(currentTab);
+
+function showTab(n) {
+    let tabs = document.getElementsByClassName("tab");
+    tabs[n].style.display = "block";
+    document.getElementById("prevBtn").style.display = n == 0 ? "none" : "inline";
+    document.getElementById("nextBtn").innerHTML = n == (tabs.length - 1) ? "Submit" : "Next";
+    fixStepIndicator(n);
+}
+
+function nextPrev(n) {
+    let tabs = document.getElementsByClassName("tab");
+    if (n == 1 && !validateForm()) return false;
+    tabs[currentTab].style.display = "none";
+    currentTab += n;
+    if (currentTab >= tabs.length) {
+        document.getElementById("regForm").submit();
+        return false;
+    }
+    showTab(currentTab);
+}
+
+function validateForm() {
+    let valid = true;
+    let inputs = document.getElementsByClassName("tab")[currentTab].getElementsByTagName("input");
+    for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].value == "") {
+            inputs[i].classList.add("is-invalid");
+            valid = false;
+        } else {
+            inputs[i].classList.remove("is-invalid");
+        }
+    }
+    return valid;
+}
+
+function fixStepIndicator(n) {
+    let steps = document.getElementsByClassName("step");
+    for (let i = 0; i < steps.length; i++) steps[i].className = steps[i].className.replace(" active", "");
+    steps[n].className += " active";
+}
+</script>
+
+<style>
+.tab { display: none; }
+.step {
+  height: 12px;
+  width: 12px;
+  margin: 0 3px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s;
+}
+.step.active { background-color: #0d6efd; }
+input.is-invalid { border-color: #dc3545; }
+</style>
+{% endblock %}

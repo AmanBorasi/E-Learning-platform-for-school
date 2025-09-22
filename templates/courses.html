@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Available Courses</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 40px auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .stream-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    .stream-card h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    .subject {
+      margin-top: 15px;
+    }
+    .subject h4 {
+      margin: 5px 0;
+      color: #555;
+    }
+    .course-item {
+      background: #f9f9f9;
+      margin: 6px 0;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .course-item span {
+      float: right;
+      font-weight: bold;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Available Streams and Courses</h1>
+    {% for stream in streams %}
+      <div class="stream-card">
+        <h2>{{ stream.name }}</h2>
+        {% for subject in stream.subjects.all %}
+          <div class="subject">
+            <h4>{{ subject.name }}</h4>
+            {% for course in subject.courses.all %}
+              <div class="course-item">
+                {{ course.name }} 
+                <span>₹{{ course.fee }} | {{ course.duration }}</span>
+              </div>
+            {% empty %}
+              <p>No courses available.</p>
+            {% endfor %}
+          </div>
+        {% empty %}
+          <p>No subjects available.</p>
+        {% endfor %}
+      </div>
+    {% empty %}
+      <p>No streams available.</p>
+    {% endfor %}
+  </div>
+</body>
+</html>
